@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Scripts.ModifierSliderSystem;
 using UnityEngine;
 
 namespace Scripts.CollectSystem
@@ -7,29 +8,36 @@ namespace Scripts.CollectSystem
     public class AutoCollectorModel : ICollect, IAutoCollectInfo
     {
         private readonly float _amount;
-        private readonly float _bonusMultiplier;
         private readonly MonoBehaviour _coroutineProvider;
         private readonly WaitForSeconds _waitForCollect;
+        private readonly IMultiplierModifier _multiplierModifier;
 
         private Coroutine _coroutine;
 
         public event Action<float> Collected;
 
-        public AutoCollectorModel(CurrencyConfig _currencyConfig, MonoBehaviour coroutineProvider)
+        public AutoCollectorModel(CurrencyConfig currencyConfig, MonoBehaviour coroutineProvider, IMultiplierModifier multiplierModifier)
         {
-            _waitForCollect = new WaitForSeconds(_currencyConfig.AutoCollectInterval);
-            _amount = _currencyConfig.AutoCollectAmount;
-            _bonusMultiplier = _currencyConfig.AutoCollectBonusMultiplier;
+            _waitForCollect = new WaitForSeconds(currencyConfig.AutoCollectInterval);
+            _amount = currencyConfig.AutoCollectAmount;
+            var bonusMultiplier = currencyConfig.AutoCollectBonusMultiplier;
             _coroutineProvider = coroutineProvider;
-            AutoCollectBonus = _amount * _bonusMultiplier;
+            AutoCollectBonus = _amount * bonusMultiplier;
+            _multiplierModifier = multiplierModifier;
+            _multiplierModifier.Modified += OnMultiplierModified;
+        }
+
+        public float AutoCollectBonus { get; private set; }
+
+        private void OnMultiplierModified(float value)
+        {
+            AutoCollectBonus = _amount * value;
         }
 
         public void Activate()
         {
             _coroutine = _coroutineProvider.StartCoroutine(CollectRoutine());
         }
-
-        public float AutoCollectBonus { get; }
 
         public void Dispose()
         {

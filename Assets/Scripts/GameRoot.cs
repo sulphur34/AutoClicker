@@ -1,6 +1,6 @@
-using System;
 using Scripts.CollectSystem;
 using Scripts.EnergySystem;
+using Scripts.ModifierSliderSystem;
 using UnityEngine;
 
 namespace Scripts
@@ -13,6 +13,8 @@ namespace Scripts
         [SerializeField] private CollectorView _collectorView;
         [SerializeField] private EnergyView _energyView;
         [SerializeField] private IncomeView _incomeView;
+        [SerializeField] private ModifierSlider _modifierSlider;
+        [SerializeField] private SliderValueTracker _sliderValueTracker;
 
         private EnergyModel _energyModel;
         private IncomeModel _incomeModel;
@@ -22,7 +24,7 @@ namespace Scripts
         private void Awake()
         {
             _energyModel = new EnergyModel(_energyConfig, this, _clickerView);
-            _autoCollectorModel = new AutoCollectorModel(_currencyConfig, this);
+            _autoCollectorModel = new AutoCollectorModel(_currencyConfig, this, _modifierSlider);
             var collectorModel = new CollectorModel(_energyModel, _autoCollectorModel, _currencyConfig.BaseTapCurrency);
             _collectSources = new ICollect[] { collectorModel, _autoCollectorModel };
             _incomeModel = new IncomeModel(_collectSources);
@@ -35,6 +37,8 @@ namespace Scripts
             _collectorView.Initialize(_collectSources);
             _energyView.Initialize(_energyModel);
             _incomeView.Initialize(_incomeModel);
+            _sliderValueTracker.Initialize();
+            _modifierSlider.Initialize(_currencyConfig.AutoCollectBonusMultiplier);
             _energyModel.Activate();
             _incomeModel.Activate();
             _autoCollectorModel.Activate();
