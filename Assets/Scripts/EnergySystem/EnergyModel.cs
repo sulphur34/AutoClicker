@@ -31,15 +31,20 @@ namespace Scripts.EnergySystem
             _energyRefillValue = energyConfig.EnergyRefillValue;
             _coroutineProvider = coroutineProvider;
             _clickerView = clickerView;
-            _coroutine = _coroutineProvider.StartCoroutine(EnergyRefillRoutine());
             clickerView.Clicked += OnClick;
+        }
+
+        public void Activate()
+        {
+            EnergyChanged?.Invoke(_currentEnergy);
+            _coroutine = _coroutineProvider.StartCoroutine(EnergyRefillRoutine());
         }
 
         public void Dispose()
         {
             _clickerView.Clicked -= OnClick;
 
-            if(_coroutine != null)
+            if (_coroutine != null)
                 _coroutineProvider.StopCoroutine(_coroutine);
         }
 
@@ -50,9 +55,7 @@ namespace Scripts.EnergySystem
                 yield return _waitForRefill;
                 var startEnergy = _currentEnergy + _energyRefillValue;
                 _currentEnergy = Mathf.Clamp(startEnergy, _minEnergy, _maxEnergy);
-
-                if(startEnergy != _currentEnergy)
-                    EnergyChanged?.Invoke(_currentEnergy);
+                EnergyChanged?.Invoke(_currentEnergy);
             }
         }
 

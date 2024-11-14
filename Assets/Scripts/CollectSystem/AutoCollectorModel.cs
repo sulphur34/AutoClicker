@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Scripts.CollectSystem
 {
-    public class AutoCollector : ICollect, IAutoCollectInfo
+    public class AutoCollectorModel : ICollect, IAutoCollectInfo
     {
         private readonly float _amount;
         private readonly float _bonusMultiplier;
@@ -15,13 +15,17 @@ namespace Scripts.CollectSystem
 
         public event Action<float> Collected;
 
-        public AutoCollector(float interval, float amount, float bonusMultiplier, MonoBehaviour coroutineProvider)
+        public AutoCollectorModel(CurrencyConfig _currencyConfig, MonoBehaviour coroutineProvider)
         {
-            _waitForCollect = new WaitForSeconds(interval);
-            _amount = amount;
-            _bonusMultiplier = bonusMultiplier;
+            _waitForCollect = new WaitForSeconds(_currencyConfig.AutoCollectInterval);
+            _amount = _currencyConfig.AutoCollectAmount;
+            _bonusMultiplier = _currencyConfig.AutoCollectBonusMultiplier;
             _coroutineProvider = coroutineProvider;
-            AutoCollectBonus = amount * bonusMultiplier;
+            AutoCollectBonus = _amount * _bonusMultiplier;
+        }
+
+        public void Activate()
+        {
             _coroutine = _coroutineProvider.StartCoroutine(CollectRoutine());
         }
 

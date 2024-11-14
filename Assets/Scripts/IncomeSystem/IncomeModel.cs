@@ -18,6 +18,11 @@ public class IncomeModel : IIncome
 
     public event Action<float> IncomeChanged;
 
+    public void Activate()
+    {
+        IncomeChanged?.Invoke(_income);
+    }
+
     public void Dispose()
     {
         foreach (var source in _collectSources)
@@ -29,5 +34,6 @@ public class IncomeModel : IIncome
     private void OnIncomeCollected(float value)
     {
         _income += value;
+        IncomeChanged?.Invoke(_income);
     }
 }
