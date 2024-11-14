@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Scripts.EnergySystem
 {
-    public class EnergyModel : IEnergyInfo
+    public class EnergyModel : IEnergyInfo, IEnergy
     {
         private readonly int _minEnergy;
         private readonly int _maxEnergy;
