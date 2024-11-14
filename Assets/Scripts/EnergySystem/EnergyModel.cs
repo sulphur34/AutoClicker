@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
-using Scripts.CollectSystem;
+using CollectSystem;
 using UnityEngine;
 
-namespace Scripts.EnergySystem
+namespace EnergySystem
 {
     public class EnergyModel : IEnergyInfo, IEnergy
     {

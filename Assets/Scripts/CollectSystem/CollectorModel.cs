@@ -1,13 +1,13 @@
 using System;
-using Scripts.EnergySystem;
+using EnergySystem;
 
-namespace Scripts.CollectSystem
+namespace CollectSystem
 {
     public class CollectorModel : ICollect
     {
-        private float _tapCollectionValue;
-        private IAutoCollectInfo _autoCollectInfo;
-        private IEnergy _energy;
+        private readonly float _tapCollectionValue;
+        private readonly IAutoCollectInfo _autoCollectInfo;
+        private readonly IEnergy _energy;
 
         public CollectorModel(IEnergy energy, IAutoCollectInfo autoCollectInfo, float tapCollectionValue)
         {
@@ -18,6 +18,11 @@ namespace Scripts.CollectSystem
         }
 
         public event Action<float> Collected;
+
+        public void Dispose()
+        {
+            _energy.EnergyReceived -= OnEnergyReceived;
+        }
 
         private void OnEnergyReceived(bool isReceived)
         {

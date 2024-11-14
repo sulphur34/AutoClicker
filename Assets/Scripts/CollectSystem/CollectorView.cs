@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Scripts.CollectSystem
+namespace CollectSystem
 {
     public class CollectorView : MonoBehaviour
     {

@@ -1,24 +1,28 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class IncomeView : MonoBehaviour
+namespace IncomeSystem
 {
-    [SerializeField] private TextMeshProUGUI _lable;
-    private IIncome _income;
-
-    public void Initialize(IIncome income)
+    public class IncomeView : MonoBehaviour
     {
-       _income = income;
-       _income.IncomeChanged += OnIncome;
-    }
+        [SerializeField] private TextMeshProUGUI _label;
+        private IIncome _income;
 
-    private void OnDisable()
-    {
-        _income.IncomeChanged -= OnIncome;
-    }
+        public void Initialize(IIncome income)
+        {
+            _income = income;
+            _income.IncomeChanged += OnIncome;
+        }
 
-    private void OnIncome(float value)
-    {
-        _lable.text = value.ToString();
+        private void OnDisable()
+        {
+            _income.IncomeChanged -= OnIncome;
+        }
+
+        private void OnIncome(float value)
+        {
+            _label.text = value.ToString();
+        }
     }
 }

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.CollectSystem
+namespace CollectSystem
 {
     public class ClickerView : MonoBehaviour
     {

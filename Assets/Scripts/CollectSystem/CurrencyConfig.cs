@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scripts.CollectSystem
+namespace CollectSystem
 {
     [CreateAssetMenu(fileName = "CurrencyConfig", menuName = "GameSettings/CurrencyConfig")]
     public class CurrencyConfig : ScriptableObject

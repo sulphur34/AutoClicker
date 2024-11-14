@@ -1,8 +1,7 @@
-using System;
 using TMPro;
 using UnityEngine;
 
-namespace Scripts.EnergySystem
+namespace EnergySystem
 {
     public class EnergyView : MonoBehaviour
     {

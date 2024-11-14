@@ -1,9 +1,8 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Scripts.ModifierSliderSystem
+namespace ModifierSliderSystem
 {
     public class SliderValueTracker : MonoBehaviour, IMultiplierModifier
     {

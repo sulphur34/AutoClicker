@@ -1,6 +1,9 @@
 using System;
 
-public interface IIncome
+namespace IncomeSystem
 {
-    event Action<float> IncomeChanged;
+    public interface IIncome
+    {
+        event Action<float> IncomeChanged;
+    }
 }

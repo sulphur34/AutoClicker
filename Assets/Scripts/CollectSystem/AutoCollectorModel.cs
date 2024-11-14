@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
-using Scripts.ModifierSliderSystem;
+using ModifierSliderSystem;
 using UnityEngine;
 
-namespace Scripts.CollectSystem
+namespace CollectSystem
 {
     public class AutoCollectorModel : ICollect, IAutoCollectInfo
     {

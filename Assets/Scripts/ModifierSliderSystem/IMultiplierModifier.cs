@@ -1,6 +1,6 @@
 using System;
 
-namespace Scripts.ModifierSliderSystem
+namespace ModifierSliderSystem
 {
     public interface IMultiplierModifier
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Scripts.CollectSystem
+namespace CollectSystem
 {
     public interface ICollect
     {

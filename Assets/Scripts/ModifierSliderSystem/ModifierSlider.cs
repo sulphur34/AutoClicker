@@ -1,9 +1,8 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scripts.ModifierSliderSystem
+namespace ModifierSliderSystem
 {
     public class ModifierSlider : MonoBehaviour, IMultiplierModifier
     {

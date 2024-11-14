@@ -1,9 +1,9 @@
 using System;
 
-namespace Scripts.EnergySystem
+namespace EnergySystem
 {
     public interface IEnergyInfo
     {
-        public event Action<int> EnergyChanged;
+        event Action<int> EnergyChanged;
     }
 }

@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
-namespace Scripts.CollectSystem
+namespace CollectSystem
 {
     public class FloatingText : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-namespace Scripts.CollectSystem
+namespace CollectSystem
 {
     public interface IAutoCollectInfo
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scripts.EnergySystem
+namespace EnergySystem
 {
     [CreateAssetMenu(fileName = "EnergyConfig", menuName = "GameSettings/EnergyConfig")]
     public class EnergyConfig : ScriptableObject

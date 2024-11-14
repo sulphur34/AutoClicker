@@ -1,39 +1,43 @@
 using System;
-using Scripts.CollectSystem;
+using CollectSystem;
 
-public class IncomeModel : IIncome
+namespace IncomeSystem
 {
-    private ICollect[] _collectSources;
-    private float _income;
-
-    public IncomeModel(ICollect[] collectSources)
+    public class IncomeModel : IIncome
     {
-        _collectSources = collectSources;
+        private readonly ICollect[] _collectSources;
 
-        foreach (var source in _collectSources)
+        private float _income;
+
+        public IncomeModel(ICollect[] collectSources)
         {
-            source.Collected += OnIncomeCollected;
+            _collectSources = collectSources;
+
+            foreach (var source in _collectSources)
+            {
+                source.Collected += OnIncomeCollected;
+            }
         }
-    }
 
-    public event Action<float> IncomeChanged;
+        public event Action<float> IncomeChanged;
 
-    public void Activate()
-    {
-        IncomeChanged?.Invoke(_income);
-    }
-
-    public void Dispose()
-    {
-        foreach (var source in _collectSources)
+        public void Activate()
         {
-            source.Collected -= OnIncomeCollected;
+            IncomeChanged?.Invoke(_income);
         }
-    }
 
-    private void OnIncomeCollected(float value)
-    {
-        _income += value;
-        IncomeChanged?.Invoke(_income);
+        public void Dispose()
+        {
+            foreach (var source in _collectSources)
+            {
+                source.Collected -= OnIncomeCollected;
+            }
+        }
+
+        private void OnIncomeCollected(float value)
+        {
+            _income += value;
+            IncomeChanged?.Invoke(_income);
+        }
     }
 }
