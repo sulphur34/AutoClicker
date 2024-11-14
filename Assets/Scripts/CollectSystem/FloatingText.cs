@@ -40,6 +40,8 @@ namespace Scripts.CollectSystem
                     _speed * Time.deltaTime);
                 yield return null;
             }
+
+            Destroy(gameObject);
         }
 
         private bool IsDestinationReached()

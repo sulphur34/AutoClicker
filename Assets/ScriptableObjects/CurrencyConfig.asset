@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4059f1037a42d8d46a23e7e6c8507941, type: 3}
   m_Name: CurrencyConfig
   m_EditorClassIdentifier: 
-  baseTapCurrency: 10
-  tapModifier: 1
-  autoCollectInterval: 5
-  autoCollectAmount: 100
-  autoCollectBonusMultiplier: 0.1
+  <BaseTapCurrency>k__BackingField: 10
+  <TapModifier>k__BackingField: 1
+  <AutoCollectInterval>k__BackingField: 5
+  <AutoCollectAmount>k__BackingField: 100
+  <AutoCollectBonusMultiplier>k__BackingField: 0.1
